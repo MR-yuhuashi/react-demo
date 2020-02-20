@@ -6,13 +6,12 @@ class Main extends React.Component{
   onClick () {
     let text = this.refs.input;
 
-    this.props.dispatch(addTodo({
+    this.props.addClick({
       text: text.value
-    }));
+    });
   }
 
   render() {
-    console.log(this.props);
     return(
       <div>
         <input type="text" ref="input" />
@@ -29,8 +28,21 @@ class Main extends React.Component{
   }
 }
 
-export default connect(
-  state => ({
+const mapStateToProps = (state) => {
+  return {
     todoList: state.todoList
-  })
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addClick: (...rest) => {
+      dispatch(addTodo(...rest))
+    }
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
 )(Main);
