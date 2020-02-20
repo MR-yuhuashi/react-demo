@@ -34,6 +34,7 @@ const mapStateToProps = (state) => {
   }
 }
 
+// 不传的时候，React-Redux会自动将dispatch注入组件的props
 const mapDispatchToProps = (dispatch) => {
   return {
     addClick: (...rest) => {
